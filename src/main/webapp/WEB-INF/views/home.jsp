@@ -76,7 +76,7 @@
   </div>
   <!-- /.content-wrapper -->
   
-   <jsp:include page='/WEB-INF/views/common/footer.jsp'></jsp:include>
+
 
 
 </div>

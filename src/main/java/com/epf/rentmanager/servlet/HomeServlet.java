@@ -20,11 +20,11 @@ public class HomeServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	 protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			request.setAttribute("nbClients", ClientService.count());
-			request.setAttribute("nbVehicles", VehicleService.count());
+			request.setAttribute("nbClients", ClientService.getInstance().count());
+			request.setAttribute("nbVehicles", VehicleService.getInstance().count());
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
