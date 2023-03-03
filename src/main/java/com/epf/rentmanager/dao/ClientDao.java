@@ -92,7 +92,7 @@ public class ClientDao {
 			while(resultSet.next()) {
 				Client client = new Client();
 				client.setId((int) resultSet.getLong("id"));
-				client.setNom(resultSet.getString("nom"));
+				client.setNom(resultSet.getString("nom").toUpperCase());
 				client.setPrenom(resultSet.getString("prenom"));
 				client.setEmail(resultSet.getString("email"));
 				client.setNaissance(resultSet.getDate("naissance").toLocalDate());
