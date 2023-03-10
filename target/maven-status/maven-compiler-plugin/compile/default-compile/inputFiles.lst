@@ -1,8 +1,12 @@
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\service\ClientService.java
+C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserServlet.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
+C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\ReservationServlet.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
+C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
+C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\UserCreateServlet.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\HomeServlet.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\model\Reservation.java
@@ -12,4 +16,5 @@ C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\ma
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java
+C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleServlet.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\persistence\FillDatabase.java

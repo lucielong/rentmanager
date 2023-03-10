@@ -11,7 +11,9 @@ import java.util.List;
 
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
+import java.time.LocalDate;
 
 public class ReservationDao {
 
@@ -29,6 +31,8 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_BY_CLIENT_QUERY = "SELECT id, vehicle_id, debut, fin FROM Reservation WHERE client_id=?;";
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
+
+	private static final String COUNT_RESERVATIONS_QUERY = "SELECT COUNT(id) AS count FROM Reservation;";
 		
 	public long create(Reservation reservation) throws DaoException {
 		try {
@@ -62,15 +66,81 @@ public class ReservationDao {
 	}
 
 	
-	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
-		return new ArrayList<Reservation>();
+	public  List<Reservation> findResaByClientId(int client_id) throws DaoException {
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(FIND_RESERVATIONS_BY_CLIENT_QUERY);
+			while (resultSet.next()){
+				Reservation reservation = new Reservation();
+				reservation.setClient_id((int) client_id);
+				reservation.setId(resultSet.getInt("id"));
+				reservation.setVehicle_id(resultSet.getInt("vehicle_id"));
+				reservation.setDebut(resultSet.getDate("debut").toLocalDate());
+				reservation.setFin(resultSet.getDate("fin").toLocalDate());
+				reservations.add(reservation);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservations;
 	}
+
 	
-	public List<Reservation> findResaByVehicleId(long vehicleId) throws DaoException {
-		return new ArrayList<Reservation>();
+	public List<Reservation> findResaByVehicleId(long vehicle_id) throws DaoException {
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(FIND_RESERVATIONS_BY_VEHICLE_QUERY);
+			while (resultSet.next()){
+				Reservation reservation = new Reservation();
+				reservation.setVehicle_id((int) vehicle_id);
+				reservation.setId(resultSet.getInt("id"));
+				reservation.setClient_id(resultSet.getInt("client_id"));
+				reservation.setDebut(resultSet.getDate("debut").toLocalDate());
+				reservation.setFin(resultSet.getDate("fin").toLocalDate());
+				reservations.add(reservation);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservations;
 	}
 
 	public List<Reservation> findAll() throws DaoException {
-		return new ArrayList<Reservation>();
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(FIND_RESERVATIONS_QUERY);
+			while (resultSet.next()){
+				Reservation reservation = new Reservation();
+				reservation.setId(resultSet.getInt("id"));
+				reservation.setVehicle_id(resultSet.getInt("vehicle_id"));
+				reservation.setClient_id(resultSet.getInt("client_id"));
+				reservation.setDebut(resultSet.getDate("debut").toLocalDate());
+				reservation.setFin(resultSet.getDate("fin").toLocalDate());
+				reservations.add(reservation);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservations;
+	}
+
+	public int count() throws DaoException {
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(COUNT_RESERVATIONS_QUERY);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt("count");
+			}
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors du comptage des réservations");
+		}
+		return 0;
 	}
 }

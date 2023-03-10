@@ -8,12 +8,18 @@ public class Vehicle {
     private String modele;
     private int nb_places;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Vehicle(int id, String constructeur, int nbPlaces) {
         this.id = id;
         this.constructeur = constructeur;
         this.nb_places = nbPlaces;
     }
 
+    public Vehicle() {
+    }
     @Override
     public String toString() {
         return "Reservation{" +

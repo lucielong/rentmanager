@@ -66,10 +66,11 @@ public class VehicleDao {
 			preparedStatement.setLong(1, id);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if(resultSet.next()) {
-				int id_vehicle = resultSet.getInt("id");
-				String constructeur = resultSet.getString("constructeur");
-				int nb_places = resultSet.getInt("nb_places");
-				return new Vehicle((int) id, constructeur, nb_places);
+				Vehicle vehicule = new Vehicle();
+				vehicule.setId((int) id);
+				vehicule.setConstructeur(resultSet.getString("constructeur"));
+				vehicule.setNb_places(resultSet.getInt("nb_places"));
+				return vehicule;
 			}
 			return null;
 		} catch (SQLException e) {

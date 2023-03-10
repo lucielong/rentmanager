@@ -20,6 +20,17 @@ public class Reservation {
                 '}';
     }
 
+    public Reservation(int id, int client_id, int vehicle_id, LocalDate debut, LocalDate fin) {
+        this.id = id;
+        this.client_id = client_id;
+        this.vehicle_id = vehicle_id;
+        this.debut = debut;
+        this.fin = fin;
+    }
+
+    public Reservation() {
+
+    }
     public int getId() {
         return id;
     }
@@ -47,5 +58,17 @@ public class Reservation {
 
     public void setFin(LocalDate fin) {
         this.fin = fin;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setClient_id(int client_id) {
+        this.client_id = client_id;
+    }
+
+    public void setVehicle_id(int vehicle_id) {
+        this.vehicle_id = vehicle_id;
     }
 }
