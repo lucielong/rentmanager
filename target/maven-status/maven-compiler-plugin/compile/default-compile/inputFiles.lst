@@ -14,6 +14,8 @@ C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\ma
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\service\VehicleService.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\Main.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\model\Vehicle.java
+C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\Configuration\AppConfiguration.java
+C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\Configuration\WebConfiguration.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\dao\ClientDao.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java
 C:\Users\lucie\Documents\Lucie\EPF\4A\S8\Language JAVA\Projet\rentmanager\src\main\java\com\epf\rentmanager\servlet\VehicleServlet.java

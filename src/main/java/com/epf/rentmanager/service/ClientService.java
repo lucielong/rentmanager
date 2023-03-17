@@ -7,23 +7,28 @@ import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientService {
 
 	private ClientDao clientDao;
-	public static ClientService instance;
-	
-	private ClientService() {
-		this.clientDao = ClientDao.getInstance();
+	/*public static ClientService instance;*/
+	private ClientService(ClientDao clientDao){
+		this.clientDao = clientDao;
 	}
+
+	/*private ClientService() {
+		this.clientDao = ClientDao.getInstance();
+	}*/
 	
-	public static ClientService getInstance() {
+	/*public static ClientService getInstance() {
 		if (instance == null) {
 			instance = new ClientService();
 		}
 		
 		return instance;
-	}
+	}*/
 
 
 

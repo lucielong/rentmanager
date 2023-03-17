@@ -3,15 +3,24 @@ package com.epf.rentmanager.service;
 import java.util.List;
 
 import com.epf.rentmanager.dao.ClientDao;
+import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.dao.VehicleDao;
+import org.springframework.stereotype.Service;
+
+@Service
 
 public class VehicleService {
 
 	private static VehicleDao vehicleDao;
-	public static VehicleService instance;
+
+	private VehicleService(VehicleDao vehicleDao){
+		this.vehicleDao = vehicleDao;
+	}
+
+	/*public static VehicleService instance;
 
 	private VehicleService() {
 		vehicleDao = VehicleDao.getInstance();
@@ -23,7 +32,7 @@ public class VehicleService {
 		}
 
 		return instance;
-	}
+	}*/
 
 	public long create(Vehicle vehicle) throws ServiceException {
 		// TODO: créer un véhicule

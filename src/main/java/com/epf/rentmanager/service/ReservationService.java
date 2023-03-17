@@ -6,22 +6,28 @@ import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Reservation;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class ReservationService {
 
         private static ReservationDao reservationDao;
-        public static ReservationService instance;
 
-        private ReservationService() { reservationDao = ReservationDao.getInstance(); }
+    private ReservationService(ReservationDao reservationDao){
+        this.reservationDao = reservationDao;
+    }
 
-        public static ReservationService getInstance() {
+        /*public static ReservationService instance;*/
+
+        /*private ReservationService() { reservationDao = ReservationDao.getInstance(); }*/
+
+        /*public static ReservationService getInstance() {
             if (instance == null) {
                 instance = new ReservationService();
             }
 
             return instance;
-        }
+        }*/
 
         public long create(Reservation reservation) throws ServiceException {
             try {
@@ -59,6 +65,7 @@ public class ReservationService {
     public List<Reservation> findAll() throws ServiceException {
         // TODO: récupérer tous les clients
         try {
+
             return reservationDao.findAll();
         } catch (DaoException e) {
             throw new ServiceException("Erreur lors de la récupération des réservations");
