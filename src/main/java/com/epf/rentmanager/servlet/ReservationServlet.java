@@ -1,6 +1,8 @@
 package com.epf.rentmanager.servlet;
 
 import com.epf.rentmanager.service.ReservationService;
+import com.epf.rentmanager.service.VehicleService;
+import com.epf.rentmanager.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -21,6 +23,10 @@ public class ReservationServlet extends HttpServlet {
         private static final long serialVersionUID = 1L;
     @Autowired
     ReservationService reservationService;
+    @Autowired
+    VehicleService vehicleService;
+    @Autowired
+    ClientService clientService;
     @Override
     public void init() throws ServletException {
         super.init();
@@ -30,6 +36,8 @@ public class ReservationServlet extends HttpServlet {
                 throws ServletException, IOException {
             try {
                 request.setAttribute("rents",reservationService.findAll());
+                request.setAttribute("vehicles", vehicleService);
+                request.setAttribute("clients", clientService);
             }
             catch (Exception e) {
                 System.out.println(e.getMessage());

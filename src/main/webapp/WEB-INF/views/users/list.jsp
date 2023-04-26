@@ -43,13 +43,13 @@
                                         <td>${user.email}</td>
                                         <td>${user.naissance}</td>
                                         <td>
-                                            <a class="btn btn-primary disabled" href="#">
+                                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/users/details?id=${user.id}">
                                                 <i class="fa fa-play"></i>
                                             </a>
-                                            <a class="btn btn-success disabled" href="#">
+                                            <a class="btn btn-success" href="${pageContext.request.contextPath}/users/update?id=${user.id}">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger disabled" href="#">
+                                            <a class="btn btn-danger" href="${pageContext.request.contextPath}/users/delete?id=${user.id}">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>

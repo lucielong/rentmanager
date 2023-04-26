@@ -28,6 +28,7 @@ public class ClientDao {
 	}*/
 	
 	private static final String CREATE_CLIENT_QUERY = "INSERT INTO Client(nom, prenom, email, naissance) VALUES(?, ?, ?, ?);";
+	private static final String UPDATE_CLIENT_QUERY = "UPDATE Client SET nom=?, prenom=?, email=?, naissance=? WHERE id=?;";
 	private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";
 	private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
@@ -52,14 +53,28 @@ public class ClientDao {
 			throw new DaoException("Erreur lors de la création du client");
 		}
 	}
+
+	public void update(Client client) throws DaoException {
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CLIENT_QUERY);
+			preparedStatement.setString(1, client.getNom().toUpperCase());
+			preparedStatement.setString(2, client.getPrenom());
+			preparedStatement.setString(3, client.getEmail());
+			preparedStatement.setDate(4, Date.valueOf(client.getNaissance()));
+			preparedStatement.setLong(5, client.getId());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors de la mise à jour du client");
+		}
+	}
 	
-	public long delete(Client client) throws DaoException {
+	public void delete(long id) throws DaoException {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLIENT_QUERY);
-			preparedStatement.setLong(1, client.getId());
+			preparedStatement.setLong(1, id);
 			preparedStatement.executeUpdate();
-			return client.getId();
 		} catch (SQLException e) {
 			throw new DaoException("Erreur lors de la suppression du client");
 		}

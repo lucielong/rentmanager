@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/users/create")
-public class UserCreateServlet extends HttpServlet {
+@WebServlet("/users/update")
+public class UserUpdateServlet extends HttpServlet {
 
 
     /**
@@ -35,28 +35,37 @@ public class UserCreateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            request.setAttribute("user", clientService.findById(id));
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/update.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse
             response) throws ServletException, IOException {
-            // traitement du formulaire (appel à la méthode de sauvegarde)
-            try {
-                Client client = new Client();
-                client.setId(UUID.randomUUID().hashCode());
-                client.setNom(request.getParameter("last_name"));
-                client.setPrenom(request.getParameter("first_name"));
-                client.setEmail(request.getParameter("email"));
-                client.setNaissance(LocalDate.parse(request.getParameter("naissance")));
-                clientService.create(client);
+        // traitement du formulaire (appel à la méthode de sauvegarde)
+        try {
+            Client client = new Client();
+            int id = Integer.parseInt(request.getParameter("id"));
+            client.setId(id);
+            client.setNom(request.getParameter("last_name"));
+            client.setPrenom(request.getParameter("first_name"));
+            client.setEmail(request.getParameter("email"));
+            client.setNaissance(LocalDate.parse(request.getParameter("naissance")));
+            clientService.update(client);
 
-            }
-            catch (Exception e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
-            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
 
         response.sendRedirect(request.getContextPath() + "/users");
     }
