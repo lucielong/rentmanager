@@ -98,5 +98,13 @@ public class ClientService {
 			throw new ServiceException("Erreur lors du comptage des clients");
 		}
 	}
+
+	public int countClientByVehicleId(long vehicleId) throws ServiceException {
+		try {
+			return clientDao.countClientByVehicleId(vehicleId);
+		} catch (DaoException e) {
+			throw new ServiceException("Erreur lors du comptage des clients");
+		}
+	}
 	
 }

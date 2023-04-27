@@ -27,7 +27,7 @@
                                     <b>Reservation(s)</b> <a class="pull-right">${nbRentals}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Voiture(s)</b> <a class="pull-right">3</a>
+                                    <b>Voiture(s)</b> <a class="pull-right">${nbVehicles}</a>
                                 </li>
                             </ul>
                         </div>
@@ -70,28 +70,16 @@
                                     <table class="table table-striped">
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th>Modele</th>
                                             <th>Constructeur</th>
                                             <th style=>Nombre de places</th>
                                         </tr>
+                                            <c:forEach items="${rentals}" var="rental">
                                         <tr>
-                                            <td>1.</td>
-                                            <td>Renault</td>
-                                            <td>Clio</td>
-                                            <td>5</td>
+                                            <td>${vehicles.findById(rental.vehicle_id).id}</td>
+                                            <td>${vehicles.findById(rental.vehicle_id).constructeur}</td>
+                                            <td>${vehicles.findById(rental.vehicle_id).nb_places}</td>
                                         </tr>
-                                        <tr>
-                                            <td>2.</td>
-                                            <td>Peugeot</td>
-                                            <td>206</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3.</td>
-                                            <td>Volkswagen</td>
-                                            <td>Touran</td>
-                                            <td>7</td>
-                                        </tr>
+                                        </c:forEach>
                                     </table>
                                 </div>
                             </div>

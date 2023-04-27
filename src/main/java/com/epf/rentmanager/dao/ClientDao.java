@@ -34,6 +34,7 @@ public class ClientDao {
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
 
 	private static final String COUNT_CLIENTS_QUERY = "SELECT COUNT(id) AS count FROM Client;";
+	private static final String COUNT_CLIENTS_BY_VEHICLE_QUERY = "SELECT COUNT(id) AS count FROM Client WHERE id IN (SELECT client_id FROM Reservation WHERE vehicle_id=?);";
 	
 	public long create(Client client) throws DaoException {
 		try {
@@ -126,6 +127,21 @@ public class ClientDao {
 		try {
 			Connection connection = ConnectionManager.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(COUNT_CLIENTS_QUERY);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt("count");
+			}
+		} catch (SQLException e) {
+			throw new DaoException("Erreur lors du comptage des clients");
+		}
+		return 0;
+	}
+
+	public int countClientByVehicleId(long vehicleId) throws DaoException {
+		try {
+			Connection connection = ConnectionManager.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(COUNT_CLIENTS_BY_VEHICLE_QUERY);
+			preparedStatement.setLong(1, vehicleId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				return resultSet.getInt("count");

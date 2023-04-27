@@ -38,7 +38,7 @@
 									<!-- vous devez passer par les methodes getParameter de l'objet request, est sp�cifiant la valeur -->
 									<!-- de l'attribut "name" de l'input -->
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Marque" required>
+                                        <input type="text" class="form-control" id="manufacturer" name="manufacturer"  required>
                                     </div>
                                 </div>
 
@@ -46,7 +46,7 @@
                                     <label for="seats" class="col-sm-2 control-label">Nombre de places</label>
 
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="seats" name="seats" placeholder="Nombre de places" required>
+                                        <input type="number" class="form-control" id="seats" name="seats"  required>
                                     </div>
                                 </div>
                             </div>

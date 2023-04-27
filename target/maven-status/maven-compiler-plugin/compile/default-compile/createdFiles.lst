@@ -1,10 +1,17 @@
 com\epf\rentmanager\servlet\VehicleServlet.class
+com\epf\rentmanager\servlet\VehicleDetailsServlet.class
 com\epf\rentmanager\servlet\UserDetailsServlet.class
 com\epf\rentmanager\servlet\ReservationServlet.class
+com\epf\rentmanager\servlet\ReservationCreateServlet.class
 com\epf\rentmanager\servlet\VehicleCreateServlet.class
+com\epf\rentmanager\servlet\ReservationUpdateServlet.class
 com\epf\rentmanager\servlet\UserCreateServlet.class
 com\epf\rentmanager\servlet\UserUpdateServlet.class
 com\epf\rentmanager\Configuration\WebConfiguration.class
+com\epf\rentmanager\servlet\VehicleUpdateServlet.class
 com\epf\rentmanager\service\ReservationService.class
+com\epf\rentmanager\servlet\ReservationDeleteServlet.class
+com\epf\rentmanager\servlet\ReservationDetailsServlet.class
+com\epf\rentmanager\servlet\VehicleDeleteServlet.class
 com\epf\rentmanager\servlet\UserServlet.class
 com\epf\rentmanager\servlet\UserDeleteServlet.class

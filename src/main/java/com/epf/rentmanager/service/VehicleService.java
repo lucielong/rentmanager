@@ -6,6 +6,7 @@ import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.ReservationDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.dao.VehicleDao;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,28 @@ public class VehicleService {
 		
 	}
 
+	public void update(Vehicle vehicle) throws ServiceException {
+		try {
+			if (vehicle.getConstructeur().length() < 1) {
+				throw new ServiceException("Le constructeur doit contenir au moins 1 caractère");
+			}
+			if (vehicle.getNb_places() < 1) {
+				throw new ServiceException("La voiture doit contenir au moins 1 place");
+			}
+			vehicleDao.update(vehicle);
+		} catch (DaoException e) {
+			throw new ServiceException("Erreur lors de la mise à jour du vehicule");
+		}
+	}
+
+	public void delete(long id) throws ServiceException {
+		try {
+			vehicleDao.delete(id);
+		} catch (DaoException e) {
+			throw new ServiceException("Erreur lors de la suppression du vehicule");
+		}
+	}
+
 	public Vehicle findById(long id) throws ServiceException {
 		// TODO: récupérer un véhicule par son id
 		try {
@@ -76,4 +99,14 @@ public class VehicleService {
 			throw new ServiceException("Erreur lors du comptage des véhicules");
 		}
 	}
+
+	public int countVehicleByClientId(long clientId) throws ServiceException {
+		try {
+			return vehicleDao.countVehicleByClientId(clientId);
+		} catch (DaoException e) {
+			throw new ServiceException("Erreur lors du comptage des véhicules");
+		}
+	}
+
+
 }
