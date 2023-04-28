@@ -21,15 +21,6 @@ import java.time.LocalDate;
 @Repository
 public class ReservationDao {
 
-    /*private static ReservationDao instance = null;*/
-    private ReservationDao() {
-    }
-	/*public static ReservationDao getInstance() {
-		if(instance == null) {
-			instance = new ReservationDao();
-		}
-		return instance;
-	}*/
 
     private static final String CREATE_RESERVATION_QUERY = "INSERT INTO Reservation(client_id, vehicle_id, debut, fin) VALUES(?, ?, ?, ?);";
     private static final String UPDATE_RESERVATION_QUERY = "UPDATE Reservation SET client_id=?, vehicle_id=?, debut=?, fin=? WHERE id=?;";
@@ -46,6 +37,7 @@ public class ReservationDao {
     private static final String COUNT_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT COUNT(id) AS count FROM Reservation WHERE vehicle_id=?;";
 
     public long create(Reservation reservation) throws DaoException {
+        long id = 0;
         try {
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_RESERVATION_QUERY, Statement.RETURN_GENERATED_KEYS);
@@ -56,9 +48,9 @@ public class ReservationDao {
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                return resultSet.getLong(1);
+                id = resultSet.getLong(1);
             }
-            return 0;
+            return id;
         } catch (SQLException e) {
             throw new DaoException("Erreur lors de la création de la réservation");
         }
@@ -91,21 +83,20 @@ public class ReservationDao {
     }
 
     public Reservation findById(long id) throws DaoException {
+        Reservation reservation = new Reservation();
         try {
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_RESERVATION_QUERY);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()) {
-                Reservation reservation = new Reservation();
+            if (resultSet.next()) {
                 reservation.setId((int) id);
                 reservation.setClient_id(resultSet.getInt("client_id"));
                 reservation.setVehicle_id(resultSet.getInt("vehicle_id"));
                 reservation.setDebut(resultSet.getDate("debut").toLocalDate());
                 reservation.setFin(resultSet.getDate("fin").toLocalDate());
-                return reservation;
             }
-            return null;
+            return reservation;
         } catch (SQLException e) {
             throw new DaoException("Erreur lors de la récupération de la réservation");
         }
@@ -178,47 +169,50 @@ public class ReservationDao {
     }
 
     public int count() throws DaoException {
+        int nbResa = 0;
         try {
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(COUNT_RESERVATIONS_QUERY);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getInt("count");
+                nbResa = resultSet.getInt("count");
             }
         } catch (SQLException e) {
             throw new DaoException("Erreur lors du comptage des réservations");
         }
-        return 0;
+        return nbResa;
     }
 
     public int countResaByClientId(int client_id) throws DaoException {
+        int nbResa = 0;
         try {
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(COUNT_RESERVATIONS_BY_CLIENT_QUERY);
             preparedStatement.setInt(1, client_id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getInt("count");
+                nbResa = resultSet.getInt("count");
             }
         } catch (SQLException e) {
             throw new DaoException("Erreur lors du comptage des réservations");
         }
-        return 0;
+        return nbResa;
     }
 
     public int countResaByVehicleId(int client_id) throws DaoException {
+        int nbResa = 0;
         try {
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(COUNT_RESERVATIONS_BY_VEHICLE_QUERY);
             preparedStatement.setInt(1, client_id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return resultSet.getInt("count");
+                nbResa = resultSet.getInt("count");
             }
         } catch (SQLException e) {
             throw new DaoException("Erreur lors du comptage des réservations");
         }
-        return 0;
+        return nbResa;
     }
 
 

@@ -1,7 +1,9 @@
 package com.epf.rentmanager.servlet;
-
+import java.util.List;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -23,6 +25,8 @@ public class UserDeleteServlet extends HttpServlet{
 
     @Autowired
     ClientService clientService;
+    @Autowired
+    ReservationService reservationService;
     @Override
     public void init() throws ServletException {
         super.init();
@@ -33,6 +37,10 @@ public class UserDeleteServlet extends HttpServlet{
             throws ServletException, IOException {
         try {
             long id = Integer.parseInt(request.getParameter("id"));
+            List<Reservation> resaClient = reservationService.findResaByClientId(Integer.parseInt(request.getParameter("id")));
+            for (Reservation resa : resaClient ){
+                reservationService.delete(resa.getId());
+            }
             clientService.delete(id);
         } catch (ServiceException e) {
             System.out.println(e.getMessage());
